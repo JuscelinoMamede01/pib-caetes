@@ -81,8 +81,12 @@ export function CultoForm() {
   function onSubmit(data: CultoFormData) {
     setIsSubmitting(true)
 
+    // Converte data de yyyy-mm-dd para dd/mm/yyyy
+    const [ano, mes, dia] = data.dataCulto.split('-')
+    const dataFormatada = `${dia}/${mes}/${ano}`
+
     let mensagem = ' *Culto de Adoração - PIB Caetés*\n\n'
-    mensagem += ' *Data:* ' + data.dataCulto + '\n\n'
+    mensagem += ' *Data:* ' + dataFormatada + '\n\n'
 
     if (data.leituraResponsivaAtiva && data.leituraResponsiva) {
       mensagem += ' *Leitura Responsiva:*\n' + data.leituraResponsiva + '\n\n'
