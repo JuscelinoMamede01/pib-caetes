@@ -132,7 +132,7 @@ export function CultoForm() {
       mensagem += ' *Louvor Final:*\n' + data.louvorFinal + '\n\n'
     }
 
-    mensagem += '\n Que Deus abençoe nosso culto!'
+    mensagem += '\n Que Deus abençoe nosso cuLouvorlto!'
 
     const encodedMessage = encodeURIComponent(mensagem)
     window.open('https://wa.me/?text=' + encodedMessage, '_blank')
@@ -149,7 +149,7 @@ export function CultoForm() {
     { key: 'momentoCeia', label: ' Culto de Ceia', placeholder: 'Ex: Instruções ou reflexão', type: 'textarea', activeKey: 'momentoCeiaAtiva' },
     { key: 'oracaoCriancas', label: ' Oração com Crianças', placeholder: 'Ex: Temática ou versículo', type: 'textarea', activeKey: 'oracaoCriancasAtiva' },
     { key: 'ofertorioLeitura', label: ' Ofertório - Leitura', placeholder: 'Ex: Verso para reflexão', type: 'textarea', activeKey: 'ofertorioLeituraAtiva' },
-    { key: 'ofertorioLouvor', label: ' Ofertório - Louvor', placeholder: 'Ex: Música durante ofertório', type: 'input', activeKey: 'ofertorioLouvorAtiva' },
+    { key: 'ofertorioLouvor', label: ' Ministério de louvor', placeholder: 'Ex: Música durante ofertório', type: 'input', activeKey: 'ofertorioLouvorAtiva' },
     { key: 'mensagemBiblica', label: ' Mensagem Bíblica', placeholder: 'Ex: Resumo do sermão', type: 'textarea', activeKey: 'mensagemBiblicaAtiva' },
     { key: 'louvorFinal', label: ' Louvor Final', placeholder: 'Ex: Jesus é Rei', type: 'input', activeKey: 'louvorFinalAtiva' },
   ]
