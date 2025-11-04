@@ -43,7 +43,7 @@ function SortableItem({ id, item, onEdit, onRemove }: { id: string; item: Intern
           <div className="text-sm text-neutral-100/80">{item.content}</div>
         </div>
         <div className="flex items-center space-x-2">
-          <GripVertical className="cursor-grab text-neutral-100/80 hover:text-neutral-100" {...attributes} {...listeners} />
+          <GripVertical className="cursor-grab text-neutral-100/80 hover:text-neutral-100 touch-none" {...attributes} {...listeners} />
           <button type="button" onClick={onEdit} className="text-xs text-neutral-100/80 hover:text-neutral-100">Editar</button>
           <button type="button" onClick={onRemove} className="text-xs text-rose-400 hover:text-rose-300">Remover</button>
         </div>
@@ -116,7 +116,7 @@ export function DynamicList({ items = [], onChange }: Props) {
   // dnd-kit sensors
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
-    useSensor(TouchSensor, { activationConstraint: { delay: 150, tolerance: 5 } })
+    useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 0 } })
   )
 
   const handleDragEnd = (event: DragEndEvent) => {
