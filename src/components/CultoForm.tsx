@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import DynamicList from '@/components/DynamicList'
 import { DatePicker } from '@/components/ui/date-picker'
@@ -11,6 +11,33 @@ export function CultoForm() {
   const [customItems, setCustomItems] = React.useState<Item[]>([])
   const [dataCulto, setDataCulto] = React.useState<string | undefined>(undefined)
   const [isSending, setIsSending] = React.useState(false)
+
+  useEffect(() => {
+    const savedItems = localStorage.getItem('cultoItems')
+    if (savedItems) {
+      try {
+        setCustomItems(JSON.parse(savedItems))
+      } catch (e) {
+        console.error('Error parsing saved items', e)
+      }
+    }
+    const savedDate = localStorage.getItem('cultoDate')
+    if (savedDate) {
+      setDataCulto(savedDate)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('cultoItems', JSON.stringify(customItems))
+  }, [customItems])
+
+  useEffect(() => {
+    if (dataCulto) {
+      localStorage.setItem('cultoDate', dataCulto)
+    } else {
+      localStorage.removeItem('cultoDate')
+    }
+  }, [dataCulto])
 
   function buildMessage(items: Item[], date?: string) {
     let mensagem = ' *Programação do Culto - PIB Caetés*\n\n'
