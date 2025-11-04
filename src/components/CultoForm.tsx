@@ -8,30 +8,47 @@ import { DatePicker } from '@/components/ui/date-picker'
 type Item = { label: string; content: string }
 
 export function CultoForm() {
-  const [customItems, setCustomItems] = React.useState<Item[]>([])
-  const [dataCulto, setDataCulto] = React.useState<string | undefined>(undefined)
+  const [customItems, setCustomItems] = React.useState<Item[]>(() => {
+    const saved = localStorage.getItem('cultoItems')
+    console.log('Initializing items from localStorage:', saved)
+    if (saved) {
+      try {
+        return JSON.parse(saved)
+      } catch (e) {
+        console.error('Error parsing saved items on init', e)
+        return []
+      }
+    }
+    return []
+  })
+  const [dataCulto, setDataCulto] = React.useState<string | undefined>(() => {
+    const saved = localStorage.getItem('cultoDate')
+    console.log('Initializing date from localStorage:', saved)
+    return saved || undefined
+  })
   const [isSending, setIsSending] = React.useState(false)
 
   useEffect(() => {
-    const savedItems = localStorage.getItem('cultoItems')
-    if (savedItems) {
-      try {
-        setCustomItems(JSON.parse(savedItems))
-      } catch (e) {
-        console.error('Error parsing saved items', e)
-      }
-    }
-    const savedDate = localStorage.getItem('cultoDate')
-    if (savedDate) {
-      setDataCulto(savedDate)
-    }
-  }, [])
-
-  useEffect(() => {
+    console.log('Saving items:', customItems)
     localStorage.setItem('cultoItems', JSON.stringify(customItems))
   }, [customItems])
 
   useEffect(() => {
+    console.log('Saving date:', dataCulto)
+    if (dataCulto) {
+      localStorage.setItem('cultoDate', dataCulto)
+    } else {
+      localStorage.removeItem('cultoDate')
+    }
+  }, [dataCulto])
+
+  useEffect(() => {
+    console.log('Saving items:', customItems)
+    localStorage.setItem('cultoItems', JSON.stringify(customItems))
+  }, [customItems])
+
+  useEffect(() => {
+    console.log('Saving date:', dataCulto)
     if (dataCulto) {
       localStorage.setItem('cultoDate', dataCulto)
     } else {
