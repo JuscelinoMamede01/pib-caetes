@@ -151,7 +151,7 @@ export function DynamicList({ items = [], onChange }: Props) {
               <div className="flex flex-col space-y-2">
                 <input
                   className="w-full px-3 py-2 rounded-md bg-slate-700 text-neutral-100 border border-slate-600"
-                  placeholder="Label"
+                  placeholder="Insira seu título. Ex: Leitura Responsiva"
                   value={draft.label}
                   onChange={(e) => setDraft((d) => ({ ...d, label: e.target.value }))}
                 />
